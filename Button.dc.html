@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"></helmet>
+<sc-if value="{{ isPrimary }}" hint-placeholder-val="{{ true }}"><button style="width:100%;height:100%;min-height:44px;border:none;border-radius:999px;background:#A8432A;color:#FFFFFF;font:600 16px/1 'Figtree',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 22px;cursor:pointer;box-sizing:border-box;white-space:nowrap" style-hover="background:#8A3520"><sc-if value="{{ hasIcon }}"><span style="font-family:'Material Symbols Rounded';font-size:20px;line-height:1">{{ icon }}</span></sc-if>{{ label }}</button></sc-if>
+<sc-if value="{{ isSecondary }}" hint-placeholder-val="{{ false }}"><button style="width:100%;height:100%;min-height:44px;border:1.5px solid #D9C8B4;border-radius:999px;background:#FFFDF9;color:#2B2118;font:600 16px/1 'Figtree',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 22px;cursor:pointer;box-sizing:border-box;white-space:nowrap" style-hover="border-color:#2B2118"><sc-if value="{{ hasIcon }}"><span style="font-family:'Material Symbols Rounded';font-size:20px;line-height:1">{{ icon }}</span></sc-if>{{ label }}</button></sc-if>
+<sc-if value="{{ isDisabled }}" hint-placeholder-val="{{ false }}"><button disabled="disabled" style="width:100%;height:100%;min-height:44px;border:none;border-radius:999px;background:#EDE4D8;color:#857565;font:600 16px/1 'Figtree',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 22px;cursor:not-allowed;box-sizing:border-box;white-space:nowrap"><sc-if value="{{ hasIcon }}"><span style="font-family:'Material Symbols Rounded';font-size:20px;line-height:1">{{ icon }}</span></sc-if>{{ label }}</button></sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:52},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;primary&quot;,&quot;secondary&quot;,&quot;disabled&quot;],&quot;default&quot;:&quot;primary&quot;,&quot;tsType&quot;:&quot;'primary'|'secondary'|'disabled'&quot;},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Request to borrow&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const v = this.props.variant ?? 'primary';
+    return { isPrimary: v === 'primary', isSecondary: v === 'secondary', isDisabled: v === 'disabled', label: this.props.label ?? 'Request to borrow', icon: this.props.icon, hasIcon: !!this.props.icon };
+  }
+}
+</script>
+</body>
+</html>

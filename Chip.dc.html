@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"></helmet>
+<sc-if value="{{ selected }}" hint-placeholder-val="{{ false }}"><div style="height:44px;padding:0 18px;border-radius:22px;background:#2B2118;color:#FFFDF9;font:600 14px/1 'Figtree',sans-serif;display:inline-flex;align-items:center;gap:6px;box-sizing:border-box;white-space:nowrap;cursor:pointer"><sc-if value="{{ hasIcon }}"><span style="font-family:'Material Symbols Rounded';font-size:18px;line-height:1">{{ icon }}</span></sc-if>{{ label }}</div></sc-if>
+<sc-if value="{{ unselected }}" hint-placeholder-val="{{ true }}"><div style="height:44px;padding:0 18px;border-radius:22px;background:#FFFDF9;border:1.5px solid #E3D6C5;color:#2B2118;font:500 14px/1 'Figtree',sans-serif;display:inline-flex;align-items:center;gap:6px;box-sizing:border-box;white-space:nowrap;cursor:pointer" style-hover="border-color:#B9A58F"><sc-if value="{{ hasIcon }}"><span style="font-family:'Material Symbols Rounded';font-size:18px;line-height:1">{{ icon }}</span></sc-if>{{ label }}</div></sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:200,&quot;height&quot;:60},&quot;label&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Power tools&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;selected&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const sel = !!this.props.selected;
+    return { selected: sel, unselected: !sel, label: this.props.label ?? 'Power tools', icon: this.props.icon, hasIcon: !!this.props.icon };
+  }
+}
+</script>
+</body>
+</html>

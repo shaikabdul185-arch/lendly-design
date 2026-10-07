@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"></helmet>
+<nav style="height:64px;border-radius:32px;background:#2B2118;display:flex;justify-content:space-between;align-items:center;padding:0 8px;box-shadow:0 12px 24px -8px rgba(43,33,24,.45)">
+  <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+    <sc-if value="{{ t.active }}"><div style="height:48px;padding:0 16px;border-radius:24px;background:#F7F1E8;color:#2B2118;display:flex;align-items:center;gap:6px;font:700 14px/1 'Figtree',sans-serif"><span style="font-family:'Material Symbols Rounded';font-size:22px;line-height:1">{{ t.icon }}</span>{{ t.label }}</div></sc-if>
+    <sc-if value="{{ t.idle }}"><div aria-label="{{ t.label }}" style="width:48px;height:48px;border-radius:24px;display:flex;align-items:center;justify-content:center;color:#E9DCCB;font-family:'Material Symbols Rounded';font-size:24px;line-height:1;cursor:pointer">{{ t.icon }}</div></sc-if>
+  </sc-for>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:358,&quot;height&quot;:64},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;map&quot;,&quot;list&quot;,&quot;lending&quot;,&quot;me&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const a = this.props.active ?? 'home';
+    const tabs = [['home','home','Home'],['map','map','Map'],['list','add_circle','List'],['lending','swap_horiz','Lending'],['me','person','Me']]
+      .map(([id, icon, label]) => ({ icon, label, active: id === a, idle: id !== a }));
+    return { tabs };
+  }
+}
+</script>
+</body>
+</html>
